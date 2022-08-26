@@ -1,56 +1,122 @@
-/* Ejercicio 1 = No editar el HTML */
-/* Ejercicio 2 */
+/* -----Ejercicio 1----- = No editar el HTML */
 
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('Contenido del DOM cargado');
+/* -----Ejercicio 2----- */
 
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("Contenido del DOM cargado");
 
-    /* Ejercicio 3 */
+  /* -----Ejercicio 3----- */
 
-    const origen = document.getElementById("origen")
-//    console.log(origen);
+  let origen = document.getElementById("origen");
+  //    console.log(origen);
 
-    origen.value="<p>Este contenido <strong>está listo</strong><br>para ser editado y pasarlo abajo.</p>"
+  origen.value =
+    "<p>Este contenido <strong>está listo</strong><br>para ser editado y pasarlo abajo.</p>";
+  console.log(origen.value);
 
-    /* Ejercicio 4 */
-//------------------------------------------------------
-//Se agrega la class ".botones" a los distintos objetos
-//------------------------------------------------------
+  /* -----Ejercicio 4----- */
 
-    let inputs = document.querySelectorAll("input");
-//    console.log(inputs);
-        for(var i = 0; i < inputs.length; i++)
-        inputs[i].className += " botones";
-    
-    let boton = document.querySelector("button");
-//    console.log(boton);
-        boton.classList.add('botones');
-    
-//    console.log(document.querySelectorAll('.botones'));
+  //------------------------------------------------------
+  //Se agrega la class ".botones" a los distintos objetos
+  //------------------------------------------------------
 
-//-------------------------------------------------------------
-//Se genera un array con todos los objetos con clase ".botones"
-//-------------------------------------------------------------
+  let inputs = document.querySelectorAll("input");
+  //    console.log(inputs);
+  for (var i = 0; i < inputs.length; i++) inputs[i].className += " botones";
 
-let arrayBotones = [...document.querySelectorAll('.botones')]; //Se utilíza Spread syntax (...)
-//console.log(arrayBotones);
+  let boton = document.querySelector("button");
+  //    console.log(boton);
+  boton.classList.add("botones");
 
+  //-------------------------------------------------------------
+  //Se genera un array con todos los objetos con clase ".botones"
+  //-------------------------------------------------------------
 
-//-------------------------------------------------------------
-//Se crea la funcion focus para el textarea
-//-------------------------------------------------------------
+  let arrayBotones = [...document.querySelectorAll(".botones")]; //Se utilíza Spread syntax (...)
+  //console.log(arrayBotones);
 
+  //-------------------------------------------------------------
+  //Se crea la funcion focus para el textarea
+  //-------------------------------------------------------------
 
-    origen.onfocus = ()=>{
+  origen.onfocus = () => {
+    let coleccionBotones = document.getElementsByClassName("botones");
+    console.log(coleccionBotones);
 
-        let coleccionBotones = document.getElementsByClassName("botones");
-        console.log(coleccionBotones);
+    arrayBotones.forEach((i) => {
+      i.disabled = false;
+    });
+  };
 
-        arrayBotones.forEach(i => {
-            i.disabled = false
-        });
+  /* -----Ejercicio 5----- */
 
-    }
+  let destino = document.querySelector("#destino");
+  destino.value = "";
+  console.log(origen.value);
+  console.log(destino.value);
+
+  //---------------------------------
+  //Creacion de variables de botones
+  //---------------------------------
+
+  let btnReemplazar = arrayBotones[0],
+    btnAgregar = arrayBotones[1],
+    btnAgregar5 = arrayBotones[2],
+    btnAgregar10 = arrayBotones[3],
+    btnAgregarN = arrayBotones[4],
+    btnVaciar = arrayBotones[5];
+  btnMayusculas = arrayBotones[6];
+  btnMinusculas = arrayBotones[7];
+
+  let nuevoP = document.createElement("p");
+  console.log(nuevoP);
+  nuevoP.innerText = "";
+  destino.appendChild(nuevoP);
+
+  //console.log(btnReemplazar);
+
+  //---------------------------
+  //Boton reemplazar
+  //---------------------------
+
+  btnReemplazar.addEventListener("click", function reemplazar() {
+    nuevoP.innerText = origen.value;
+  });
+
+  //---------------------------
+  //Boton agregar
+  //---------------------------
+
+  btnAgregar.addEventListener("click", function agregar() {
+    nuevoP.innerText = nuevoP.innerText + " " + origen.value;
+  });
+
+  //---------------------------
+  //Boton agregar 5 veces
+  //---------------------------
+
+  btnAgregar5.addEventListener("click", function agregar5() {
+    nuevoP.innerText = nuevoP.innerText + " " + (origen.value + " ").repeat(5);
+  });
+
+  //---------------------------
+  //Boton agregar 10 veces
+  //---------------------------
+
+  btnAgregar10.addEventListener("click", function agregar10() {
+    nuevoP.innerText = nuevoP.innerText + " " + (origen.value + " ").repeat(10);
+  });
+
+  //---------------------------
+  //Boton agregar n veces
+  //---------------------------
+
+  btnAgregarN.addEventListener("click", function agregarN() {
+    nuevoP.innerText =
+      nuevoP.innerText +
+      " " +
+      (origen.value + " ").repeat(
+        prompt("Determine la cantidad de repeticiones")
+      );
+  });
 });
-
-
