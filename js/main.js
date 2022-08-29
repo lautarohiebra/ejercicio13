@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   origen.value =
     "<p>Este contenido <strong>está listo</strong><br>para ser editado y pasarlo abajo.</p>";
-  console.log(origen.value);
+  //console.log(origen.value);
 
   /* -----Ejercicio 4----- */
 
@@ -52,8 +52,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let destino = document.querySelector("#destino");
   destino.value = "";
-  console.log(origen.value);
-  console.log(destino.value);
+//  console.log(origen.value);
+//  console.log(destino.value);
 
   //---------------------------------
   //Creacion de variables de botones
@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
   btnMinusculas = arrayBotones[7];
 
   let nuevoP = document.createElement("p");
-  console.log(nuevoP);
+//  console.log(nuevoP);
   nuevoP.innerText = "";
   destino.appendChild(nuevoP);
 
@@ -112,11 +112,53 @@ window.addEventListener("DOMContentLoaded", () => {
   //---------------------------
 
   btnAgregarN.addEventListener("click", function agregarN() {
-    nuevoP.innerText =
-      nuevoP.innerText +
-      " " +
-      (origen.value + " ").repeat(
-        prompt("Determine la cantidad de repeticiones")
+    nuevoP.innerText = nuevoP.innerText +" " +(origen.value + " ").repeat(prompt("Determine la cantidad de repeticiones")
       );
   });
+
+  /* -----Ejercicio 6----- */
+
+  //---------------------------
+  //Boton Vaciar
+  //---------------------------
+
+  btnVaciar.addEventListener("click", function vaciar() {
+    nuevoP.innerText = "";
+  });
+
+  //-----------------------------
+  //Boton convertir a mayusculas
+  //-----------------------------
+
+  btnMayusculas.addEventListener("click", function mayusculas() {
+    nuevoP.innerText = nuevoP.innerText.toUpperCase();
+  });
+
+  //-----------------------------
+  //Boton convertir a mayusculas
+  //-----------------------------
+
+  btnMinusculas.addEventListener("click", function minusculas() {
+    nuevoP.innerText = nuevoP.innerText.toLowerCase();
+  });
+
+  /* -----Ejercicio 7----- */
+
+/*   var liHTMLCollection = document.querySelectorAll('li')
+  console.log(liHTMLCollection);
+  for (let i = 0; i < liHTMLCollection.length; i++) {
+    const element = array[i];
+    i.innerText = "[OK] "
+  } */
+
+  let arrayLi = [...document.querySelectorAll("li")];
+//  console.log(arrayLi);
+
+  let coleccionLi = document.getElementsByTagName("li");
+    console.log(coleccionLi);
+
+  for (let i = 0; i < arrayLi.length; i++) {
+    const element = arrayLi[i];
+    element.innerText = "[OK] " + element.innerText
+  }
 });
